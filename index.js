@@ -1,16 +1,40 @@
 // Task 1
-const listImg = document.querySelector(".gallery");
+// const listImg = document.querySelector(".gallery");
+
+// document.addEventListener("keydown", (event) => {
+//   if (event.code === "ArrowRight") {
+//     const firstImage = listImg.firstElementChild;
+//     listImg.append(firstImage);
+//   }
+//   if (event.code === "ArrowLeft") {
+//     const lastImage = listImg.lastElementChild;
+//     listImg.prepend(lastImage);
+//   }
+// });
+
+const allImg = document.querySelectorAll(".image");
+let currentIndex = 0;
+
+allImg[currentIndex].classList.add("active");
 
 document.addEventListener("keydown", (event) => {
-  if (event.code === "ArrowRight") {
-    const firstImage = listImg.firstElementChild;
-    listImg.append(firstImage);
-  }
-  if (event.code === "ArrowLeft") {
-    const lastImage = listImg.lastElementChild;
-    listImg.prepend(lastImage);
+  if (event.key === "ArrowRight") {
+    allImg[currentIndex].classList.remove("active");
+    currentIndex++;
+    if (currentIndex >= allImg.length) {
+      currentIndex = 0;
+    }
+    allImg[currentIndex].classList.add("active");
+  } else if (event.key === "ArrowLeft") {
+    allImg[currentIndex].classList.remove("active");
+    currentIndex--;
+    if (currentIndex < 0) {
+      currentIndex = allImg.length - 1;
+    }
+    allImg[currentIndex].classList.add("active");
   }
 });
+
 // Task 2
 const controlBox = document.querySelector("#controls");
 const numberInput = document.querySelector("input");
